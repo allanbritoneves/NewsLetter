@@ -11,11 +11,12 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 
     <title>Document</title>
   </head>
   <body>
-    <div class="container">
+    <div class="container" id="container">
       <div id="infos">
         <div id="titulo"><h1>Stay updated!</h1></div>
 
@@ -30,7 +31,7 @@
             <li id="item3">And much more!</li>
           </ul>
 
-          <form id="newsletterForm">
+          <form id="newsletterForm" onsubmit="enviarEmail(event)">
             <div class="inputBox">
               <label class="inputUserEmail" for="email">Email address</label>
               <input
@@ -41,12 +42,13 @@
                 placeholder="ash@loremcompany.com"
                 required
               />
-              <button type="submit">Subscribe to monthly newletter</button>
+              <button id="submit" onclick="mostrar_mensagem(this)"  type="submit">Subscribe to monthly newletter</button>
             </div>
           </form>
 
-          <p id="mensagem"></p>
 
+
+          
 
         </div>
       </div>
@@ -57,7 +59,13 @@
         />
       </div>
     </div>
+
+    <div id="confirmed-message">
+      <img src="./assets/images/icon-success.svg" alt="image for success">
+      <h2>Thanks for subscribing!</h2>
+    <p id="mensagem">A confirmation email has been sent to <span id="emailInput"></span>. Please open it and click the button inside to confirm your subscription.</p>
+    <button id="dismiss-message" onclick="returnToHomePage()">Dismiss message</button>
+  </div>
     <script src="./index.js"></script>
   </body>
 </html>
-

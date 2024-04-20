@@ -1,60 +1,48 @@
-// Adicione um evento para aguardar o carregamento completo da página
-window.onload = function() {
-  // Obtém o formulário e o elemento de mensagem
-  const form = document.getElementById('newsletterForm');
-  const mensagemElemento = document.getElementById('mensagem');
 
-  // Adiciona um ouvinte de evento para o envio do formulário
-  form.addEventListener('submit', function(event) {
-      // Impede o envio padrão do formulário
-      event.preventDefault();
 
-      // Obtém o valor do email do campo de entrada
-      const email = document.getElementById('emailInput').value;
 
-      // Valida o email
-      if (validarEmail(email)) {
-          // Envie o email com nodemailer
-          enviarEmail(email);
+
+function enviarEmail(event) {
+  event.preventDefault(); // Evitar o envio do formulário antes de ser processado
+
+  const emailInput = document.getElementById("emailInput").value;
+
+  
+  
+  Email.send({
+    Host : "smtp.elasticemail.com",
+    Username : "allanbritoneves@gmail.com",
+    Password: "34DD941A642A788A64ACA60EDE2B6EA7122E",
+    To: emailInput,
+    From: "allanbritoneves@hotmail.com",
+    Subject: "Obrigado por assinar nosso conteudo",
+    Body: "<h2>Agradecemos por fazer parte da comunidade. Se você tiver alguma dúvida ou precisar de assistência, não hesite em nos contatar. Estamos aqui para ajudar!</h2>",
+  }).then(
+    (message) => {
+      if (message === "OK") {
+        document.getElementById("mensagem").innerText =
+          `A confirmation email has been sent to, ${emailInput}`;
+
+  document.getElementById('container').style.display="none";
+  document.getElementById('confirmed-message').style.display="block";
+
+  
+
       } else {
-          mensagemElemento.textContent = 'Por favor, insira um e-mail válido';
+        document.getElementById("mensagem").innerText =
+          "Ocorreu um erro ao enviar o email. Por favor, tente novamente mais tarde.";
       }
-  });
-};
-
-// Função para validar o email usando uma expressão regular simples
-function validarEmail(email) {
-  const re = /\S+@\S+\.\S+/;
-  return re.test(email);
+      
+    },
+    (error) => {
+      console.error(error);
+      document.getElementById("mensagem").innerText =
+        "Ocorreu um erro ao enviar o email. Por favor, tente novamente mais tarde.";
+    }
+  );
 }
 
-// Função para enviar email com Nodemailer
-function enviarEmail(email) {
-  const nodemailer = require('nodemailer');
-
-  const transport = nodemailer.createTransport({
-      host: 'smtp.mailersend.net',
-      port: '587',
-      secure: false,
-      auth: {
-          user: 'MS_gjeWkR@trial-yzkq340k85kgd796.mlsender.net',
-          pass: 'JsMrV2ED4Jfia3ig',
-      }
-  });
-
-  transport.sendMail({
-      from: 'Seja Bem Vindo <allanbritoneves@hotmail.com>',
-      to: email,
-      subject: 'Enviando email com nodemailer',
-      html: '<h1>Olá, Seja bem Vindo a nossa Newsletter',
-      text: 'Olá, Seja bem Vindo a nossa Newsletter'
-  })
-  .then(() => {
-      console.log('Email enviado com sucesso!');
-      mensagemElemento.textContent = 'Obrigado por se inscrever na nossa newsletter!';
-  })
-  .catch((error) => {
-      console.error('Erro ao enviar email', error);
-      mensagemElemento.textContent = 'Ocorreu um erro ao tentar enviar o email. Por favor, tente novamente mais tarde.';
-  });
+function returnToHomePage() {
+  // Set the URL to your homepage
+  window.location.href = "https://glittery-smakager-994277.netlify.app/";
 }

@@ -127,7 +127,7 @@ button {
     height: 3rem;
     border-radius: 5px;
     border: none;
-    
+    cursor: pointer;
 
     background-image: linear-gradient(to right, #ff005e, #ff2d5b, #ff4358, #ff5457, #ff5549);
     color: var(--White);
@@ -139,6 +139,7 @@ button {
     
 } 
 
+
 button::before{
     content: "";
     position: absolute; 
@@ -149,3 +150,122 @@ button::before{
     border-radius: inherit;
     pointer-events: none;
       }
+
+      #confirmed-message {
+        
+        line-height: 1.2;
+        background-color: var(--White);
+        width: 400px;
+        height: 400px;
+
+
+        
+        padding: 40px;
+
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 150px;
+        
+
+        align-content: center;
+        border-radius: 2rem;
+
+        align-items: center;
+      }
+      #confirmed-message {
+        display: none;
+      }
+      
+      #confirmed-message img {
+        width: 40px;
+        margin-top: 40px;
+      }
+      #confirmed-message h2 {
+        font-size: 3rem;
+        margin-top: 1.5rem;
+      }
+      #confirmed-message p {
+        margin: 2rem 0;
+      }
+      #confirmed-message button {
+
+        margin-top: 5px;
+        margin-bottom: 60px;
+        cursor: pointer;
+        font-weight: 700;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 8px;
+        border: none;
+        outline: none;
+        margin-left: -20px;
+    
+      }
+
+      @media (max-width: 768px) {
+       .container {
+        border-radius: 0;
+        display: grid;
+       
+        
+
+        grid-template-columns: 1fr;
+
+        margin-top: auto;
+        line-height: 1.4;   
+        align-items: center;
+        
+        
+        width: 450px;
+  
+    
+
+    } 
+    
+    .container, #imagens {
+        grid-row:2/-1;
+
+        
+    }
+#imagens{
+    margin-top: -10px;
+    background-size: cover;
+    margin-left: -20px;
+    margin-right: -10px;
+    width: auto;
+    
+}
+    #imagens img {
+        width: 100%;
+        height: 300px;
+    }
+
+    
+    #infos {
+        margin-top: -4rem;
+        align-content: center;
+    }
+
+    #newsletterForm {
+        margin-bottom: 40%;
+        width: 100vw;
+        
+    }
+    .inputBox {
+        padding: 1rem;
+        margin-right: 2rem;
+    }
+      #submit {
+        margin-bottom: 20px;
+      }
+   
+      #confirmed-message img {
+       
+    margin-top: 100px;
+        
+      }
+      #confirmed-message button {
+        margin-bottom: 100px;
+        
+      }
+ }
